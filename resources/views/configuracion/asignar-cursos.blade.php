@@ -1,7 +1,7 @@
 @extends('layouts.panel')
 
 @section('title', 'Asignar cursos')
-@section('sub-title', 'Asignación de cursos a los grados')
+@section('sub-title', 'Asignación de cursos a las carreras')
 
 @section('navigation')
     <li>Configuración</li>
@@ -39,13 +39,13 @@
                 <form id="formAsignar" data-action="{{ url('asociar/'.$handbook->id.'/curso/{course}/grado/{grade}') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="grade">Seleccione grado a gestionar:</label>
+                        <label for="grade">Seleccione carrera a gestionar:</label>
                         <select id="cboGrade" name="grade" class="form-control" data-redirect="{{ url('configuracion/malla/'.$handbook->id.'/grado/{grade}') }}">
-                            @foreach ($grades as $grade)
-                                @if ($grade->id == $current_grade->id)
-                                    <option value="{{ $grade->id }}" selected>{{ $grade->name }}</option>
+                            @foreach ($careers as $career)
+                                @if ($career->id == $current_career->id)
+                                    <option value="{{ $career->id }}" selected>{{ $career->name }}</option>
                                 @else
-                                    <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                    <option value="{{ $career->id }}">{{ $career->name }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -59,12 +59,25 @@
                             @endforeach
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <label for="cycle">Seleccione ciclo asociado:</label>
+                        <select name="cycle" class="form-control">
+                            <option value="">Ciclo I</option>
+                            <option value="">Ciclo II</option>
+                            <option value="">Ciclo III</option>
+                            <option value="">Ciclo IV</option>
+                            <option value="">Ciclo V</option>
+                            <option value="">Ciclo VI</option>
+                        </select>
+                    </div>
+
                     <button id="btnAsignar" type="button" class="btn btn-success">Asignar curso</button>
                 </form>
             </div>
             <div class="col-sm-6">
 
-                <p>Listado de cursos asignados al grado <strong>{{ $current_grade->name }}</strong>:</p>
+                <p>Listado de cursos asignados a la carrera <strong>{{ $current_career->name }}</strong>:</p>
                 <table class="table responsive">
                     <thead>
                     <tr>

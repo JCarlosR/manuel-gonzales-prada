@@ -82,17 +82,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="catchword">Año lectivo actual</label>
+                        <label for="catchword">Semestre actual</label>
                         <select name="school_year_id" class="form-control">
                             <option value="{{ $school_year->id }}">{{ $school_year->name }}</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="grade_id">Seleccione grado</label>
-                        <select name="grade_id" id="grade_id" class="form-control">
-                            @foreach ($grades as $grade)
-                            <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                        <label for="career_id">Seleccione carrera</label>
+                        <select name="career_id" id="career_id" class="form-control">
+                            @foreach ($careers as $career)
+                            <option value="{{ $career->id }}">{{ $career->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -101,9 +101,9 @@
                         <label for="section_id">Seleccione sección</label>
                         <select name="section_id" id="section_id" class="form-control" data-source="{{ url('grado/{id}/secciones') }}">
                             <!-- The options will be re-loaded when the grade change -->
-                            @foreach ($sections as $section)
-                                <option value="{{ $section->id }}">{{ $section->name }}</option>
-                            @endforeach
+                            <option value="">Sección A</option>
+                            <option value="">Sección B</option>
+                            <option value="">Sección C</option>
                         </select>
                     </div>
 

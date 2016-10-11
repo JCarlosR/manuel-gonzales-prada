@@ -31,7 +31,7 @@ class SchoolYearsTableSeeder extends Seeder
 
         // A past school year
         SchoolYear::create([
-            'name' => 'Año ' . ($year-1),
+            'name' => ($year-1) . '-II',
             'start' => $prev_start,
             'end' => $prev_end,
             'course_handbook_id' => 1 // malla curricular
@@ -39,7 +39,7 @@ class SchoolYearsTableSeeder extends Seeder
 
         // Current school year
         SchoolYear::create([
-            'name' => 'Año ' . $year,
+            'name' => $year . '-I',
             'start' => $start,
             'end' => $end,
             'course_handbook_id' => 1 // malla curricular

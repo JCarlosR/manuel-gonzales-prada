@@ -16,8 +16,7 @@ Route::get('configuracion/datos', 'InstitutionController@index');
 Route::get('configuracion/parametros', 'ParameterController@index');
 Route::get('configuracion/cursos', 'CourseController@index');
 Route::get('configuracion/mallas', 'CourseHandbookController@index');
-Route::get('configuracion/anos-lectivos', 'SchoolYearController@index');
-Route::get('configuracion/ano-lectivo/{id}', 'PeriodController@index');
+Route::get('configuracion/semestres', 'SchoolYearController@index');
 Route::get('configuracion/periodo-lectivo/{id}', 'UnitController@index');
 
 // Course CRUD
@@ -32,17 +31,13 @@ Route::get('malla/eliminar/{id}', 'CourseHandbookController@destroy');
 
 // CourseGrade operations
 Route::get('configuracion/malla/{handbook}', 'CourseGradeController@redirect');
-Route::get('configuracion/malla/{handbook}/grado/{grade}', 'CourseGradeController@index');
+Route::get('configuracion/malla/{handbook}/carrera/{grade}', 'CourseGradeController@index');
 Route::post('asociar/{handbook}/curso/{course}/grado/{grade}', 'CourseGradeController@store');
 Route::get('desasociar/{handbook}/curso/{course}/grado/{grade}', 'CourseGradeController@destroy');
 
 // SchoolYear CRUD
 Route::post('ano-lectivo/registrar', 'SchoolYearController@store');
 
-// Period CRUD
-Route::post('periodo/registrar', 'PeriodController@store');
-Route::put('periodo/editar', 'PeriodController@update');
-Route::get('periodo/eliminar/{id}', 'PeriodController@destroy');
 
 // Unit CRUD
 Route::post('unidad/registrar', 'UnitController@store');

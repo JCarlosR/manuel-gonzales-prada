@@ -1,11 +1,11 @@
 @extends('layouts.panel')
 
-@section('title', 'Años lectivos')
-@section('sub-title', 'Configuración de los años lectivos')
+@section('title', 'Semestres')
+@section('sub-title', 'Configuración de los semestres')
 
 @section('navigation')
     <li>Configuración</li>
-    <li class="active">Años lectivos</li>
+    <li class="active">Semestres</li>
 @endsection
 
 @section('content')
@@ -13,20 +13,20 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Acerca de los años lectivos</h3>
+                    <h3 class="box-title">Acerca de los semestres</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Minimizar"><i class="fa fa-minus"></i></button>
                         <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Cerrar"><i class="fa fa-times"></i></button>
                     </div>
                 </div>
                 <div class="box-body">
-                    <p>Es necesario definir los años lectivos de su institución educativa.</p>
-                    <p>Cada año lectivo contiene periodos lectivos, y cada periodo contiene unidades.</p>
-                    <p>Tenga en cuenta que los años lectivos finalizados no pueden alterarse bajo ningún concepto.</p>
-                    <p>La información de años pasados permanece en el sistema, y puede consultarse las veces que sea necesario.</p>
-                    <p>Información del año lectivo en curso:</p>
+                    <p>Es necesario definir los semestres para la institución educativa.</p>
+                    <p>Cada semestre se asociará con matrículas y otros procesos que se llevarán a cabo en un periodo determinado.</p>
+                    <p>Tenga en cuenta que si un semestre ha iniciado, no podrá modificarse la fecha de inicio, y si ha finalizado, tampoco se podrá modificar la fecha de cierre.</p>
+                    <p>La información de todos los semestres permanece en el sistema, y podrá consultarse las veces que sea necesario.</p>
+                    <p>Semestre actual:</p>
                     <ul>
-                        <li>Año lectivo: <strong>{{ $current_year->name }}</strong> ({{ $current_year->range or 'Ninguno' }})</li>
+                        <li>Semestre: <strong>{{ $current_year->name }}</strong> ({{ $current_year->range or 'Ninguno' }})</li>
                         <li>Malla curricular en uso: <strong><a href="{{ url('configuracion/malla/'.$current_handbook->id) }}">{{ $current_handbook->name }}</a></strong></li>
                     </ul>
                 </div><!-- /.box-body -->
@@ -35,7 +35,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Registrar nuevo año lectivo</h3>
+                    <h3 class="box-title">Registrar nuevo semestre</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Minimizar"><i class="fa fa-minus"></i></button>
                     </div>
@@ -57,15 +57,15 @@
                         </div>
                     @endif
 
-                    <p>A continuación, usted puede definir un nuevo año lectivo.</p>
+                    <p>A continuación, usted puede definir un nuevo semestre.</p>
                     <form action="{{ url('ano-lectivo/registrar') }}" method="POST">
                         {{ csrf_field() }}
 
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <label for="name">Nombre del año lectivo:</label>
-                                    <input type="text" name="name" placeholder="Nombre del año" value="{{ old('name') }}" class="form-control">
+                                    <label for="name">Nombre del semestre:</label>
+                                    <input type="text" name="name" placeholder="Ejemplo: 2016-II" value="{{ old('name') }}" class="form-control">
                                 </div>
                                 <div class="col-sm-6">
                                     <label for="course_handbook_id">Malla curricular asociada:</label>
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success pull-right">Registrar nuevo año</button>
+                        <button type="submit" class="btn btn-success pull-right">Registrar nuevo semestre</button>
                     </form>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
@@ -98,24 +98,24 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Configuración de los años lectivos</h3>
+                    <h3 class="box-title">Configuración de los semestres</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Minimizar"><i class="fa fa-minus"></i></button>
                     </div>
                 </div>
                 <div class="box-body">
-                    <p>Configuración de los periodos del año lectivo:</p>
+                    <p>Gestión de semestres:</p>
                     <a href="{{ url('configuracion/ano-lectivo/' . $current_year->id) }}" class="btn btn-primary btn-block" style="margin-bottom: 2em;">
-                        Configurar año lectivo actual
+                        Modificar semestre actual actual
                     </a>
 
-                    <p>Historial de años lectivos:</p>
+                    <p>Historial de semestres concluidos:</p>
                     <table class="table responsive">
                         <thead>
                         <tr>
                             <td>Código</td>
-                            <td>Año lectivo</td>
-                            <td>Mala curricular</td>
+                            <td>Semestre</td>
+                            <td>Malla curricular</td>
                             <td>Fecha de inicio</td>
                             <td>Fecha de fin</td>
                             <td>Opciones</td>
@@ -130,7 +130,12 @@
                             <td>{{ $year->start_format }}</td>
                             <td>{{ $year->end_format }}</td>
                             <td>
-                                <a href="#" class="btn btn-info">Ver periodos</a>
+                                <a href="#" class="btn btn-info btn-sm" title="Editar">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-danger btn-sm" title="Eliminar">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
                             </td>
                         </tr>
                         @endforeach

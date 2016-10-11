@@ -68,4 +68,9 @@ class User extends Authenticatable
 
         return '';
     }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->role==1;
+    }
 }

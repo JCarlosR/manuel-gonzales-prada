@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Career;
 use App\Enrollment;
-use App\Grade;
 use App\SchoolYear;
 use App\User;
 use Illuminate\Http\Request;
@@ -20,18 +20,20 @@ class EnrollmentController extends Controller
     public function index()
     {
         $school_year = SchoolYear::orderBy('id', 'desc')->first();
-        $grades = Grade::all();
-        $sections = $grades->first()->sections;
-        return view('matriculas.listado')->with(compact(['school_year', 'grades', 'sections']));
+        $careers = Career::all();
+        // $sections = $grades->first()->sections;
+        $sections = [];
+        return view('matriculas.listado')->with(compact('school_year', 'careers', 'sections'));
     }
 
     public function create()
     {
         $school_year = SchoolYear::orderBy('id', 'desc')->first();
-        $grades = Grade::all();
-        $sections = $grades->first()->sections;
+        $careers = Career::all();
+        // $sections = $grades->first()->sections;
+        $sections = [];
         $students = User::where('role_id', 2)->paginate(6);
-        return view('matriculas.matricular')->with(compact(['school_year', 'grades', 'sections', 'students']));
+        return view('matriculas.matricular')->with(compact('school_year', 'careers', 'sections', 'students'));
     }
 
     public function store(Request $request)

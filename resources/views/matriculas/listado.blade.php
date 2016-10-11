@@ -90,19 +90,19 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="grade_id">Grado:</label>
+                            <label for="grade_id">Carreras:</label>
                             <select name="grade_id" class="form-control">
-                                @foreach ($grades as $grade)
-                                <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                @foreach ($careers as $career)
+                                <option value="{{ $career->id }}">{{ $career->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="section_id">Sección:</label>
                             <select name="section_id" class="form-control">
-                                @foreach ($sections as $section)
-                                    <option value="{{ $section->id }}">{{ $section->name }}</option>
-                                @endforeach
+                                <option value="">Sección A</option>
+                                <option value="">Sección B</option>
+                                <option value="">Sección C</option>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
@@ -125,9 +125,9 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td></td>
-                            <td data-name></td>
-                            <td data-description></td>
+                            <td>Diego Payano Herrera</td>
+                            <td>05/10/2016</td>
+                            <td>S/. 250</td>
                             <td>
                                 <button class="btn btn-primary" data-editar="">Ver cuotas</button>
                                 <a href="#" class="btn btn-success">Añadir cuota</a>

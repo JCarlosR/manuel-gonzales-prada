@@ -64,9 +64,9 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <p>Es necesario definir la malla curricular que se usa actualmente en su institución educativa.</p>
-                    <p>Es importante, ya que al definir un nuevo año lectivo, se le tendrá que asignar una malla curricular.</p>
-                    <p>Tenga en cuenta que una misma malla curricular puede aplicarse a varios años lectivos, pero en caso de requerir modificaciones, usted tendrá que crear una nueva malla curricular.</p>
+                    <p>Es necesario definir la malla curricular que se usa actualmente en la institución educativa.</p>
+                    <p>Es importante, ya que al definir un nuevo semestre, se debe asignar una malla curricular.</p>
+                    <p>Tenga en cuenta que una misma malla curricular puede usarse en varios semestres, pero en caso de requerir modificaciones, usted tendrá que crear una nueva malla curricular.</p>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div>

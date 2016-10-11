@@ -24,7 +24,7 @@ class SchoolYearController extends Controller
         $current_year = $years->pop();
         $current_handbook = $current_year->course_handbook;
         $handbooks = CourseHandbook::all();
-        return view('configuracion.anos-lectivos')->with(compact(['years', 'current_year', 'current_handbook', 'handbooks']));
+        return view('configuracion.semestres')->with(compact('years', 'current_year', 'current_handbook', 'handbooks'));
     }
 
     public function store(Request $request)

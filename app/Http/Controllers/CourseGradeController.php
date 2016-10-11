@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Career;
 use App\Course;
 use App\CourseGrade;
 use App\CourseHandbook;
@@ -22,25 +23,26 @@ class CourseGradeController extends Controller
 
     public function redirect($handbook)
     {
-        $grade = Grade::first();
-        return redirect('configuracion/malla/' . $handbook . '/grado/' . $grade->id);
+        $career = Career::first();
+        return redirect('configuracion/malla/' . $handbook . '/carrera/' . $career->id);
     }
 
-    public function index($handbook_id, $grade_id)
+    public function index($handbook_id, $career_id)
     {
         $handbook = CourseHandbook::find($handbook_id);
 
         // Get all courses and grades to fill the selects
         $courses = Course::all();
-        $grades = Grade::all();
+        $careers = Career::all();
 
         // Select the grade and its courses associated in the current handbook
-        $current_grade = Grade::find($grade_id);
-        $current_courses = CourseGrade::where('course_handbook_id', $handbook_id)
-                            ->where('grade_id', $grade_id)->get(['course_id']);
-        $current_courses = $this->convertToCourseCollection($current_courses);
+        $current_career = Career::find($career_id);
+        /*$current_courses = CourseCareer::where('course_handbook_id', $handbook_id)
+                            ->where('career_id', $career_id)->get(['course_id']);
+        $current_courses = $this->convertToCourseCollection($current_courses);*/
+        $current_courses = [];
 
-        return view('configuracion.asignar-cursos')->with(compact(['handbook', 'courses', 'grades', 'current_courses', 'current_grade']));
+        return view('configuracion.asignar-cursos')->with(compact('handbook', 'courses', 'careers', 'current_courses', 'current_career'));
     }
 
     public function convertToCourseCollection($course_grades) {

@@ -12,20 +12,22 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // Administrator
         User::create([
-            'email' => 'juancagb.17@gmail.com',
+            'email' => 'admin@manuelgonzalesprada.com',
             'password' => bcrypt('123123'),
 
-            'first_name' => 'Juan Carlos',
-            'last_name' => 'Ramos Suyón',
+            'first_name' => 'Angel',
+            'last_name' => 'Mantilla',
             'identity_card' => '76474871',
             'gender' => 'Hombre',
 
-            'cellphone' => '966543777',
-            'address' => 'Los Rosales #136',
+            'cellphone' => '966 543 777',
+            'address' => 'Trujillo - Perú',
             'role_id' => 1
         ]);
 
+        // Five students
         $faker = Faker\Factory::create();
         for ($i=0; $i<5; ++$i) {
             User::create([

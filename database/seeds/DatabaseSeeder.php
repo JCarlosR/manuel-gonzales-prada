@@ -17,11 +17,12 @@ class DatabaseSeeder extends Seeder
 
         // Courses and assignments
         $this->call(CoursesTableSeeder::class);
+        $this->call(CareersTableSeeder::class);
         $this->call(CourseHandooksTableSeeder::class);
 
         // Study seasons
         $this->call(SchoolYearsTableSeeder::class);
-        $this->call(PeriodsTableSeeder::class);
-        $this->call(UnitsTableSeeder::class);
+        // $this->call(PeriodsTableSeeder::class);
+        // $this->call(UnitsTableSeeder::class);
     }
 }

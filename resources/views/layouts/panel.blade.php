@@ -222,8 +222,8 @@
               </a>
               <ul class="treeview-menu">
                   <li><a href="#"><i class="fa fa-circle-o"></i> Historial de pagos</a></li>
-                  <li><a href="#{{-- url('matricula/registrar') --}}"><i class="fa fa-circle-o"></i> Registrar matrícula</a></li>
-                  <li><a href="#{{-- url('matricula/listar') --}}"><i class="fa fa-circle-o"></i> Listado de matrículas</a></li>
+                  <li><a href="{{ url('matricula/registrar') }}"><i class="fa fa-circle-o"></i> Registrar matrícula</a></li>
+                  <li><a href="{{ url('matricula/listar') }}"><i class="fa fa-circle-o"></i> Listado de matrículas</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -266,7 +266,7 @@
 
                 <li><a href="{{ url('configuracion/cursos') }}"><i class="fa fa-circle-o"></i> Gestionar cursos</a></li>
                 <li><a href="{{ url('configuracion/mallas') }}"><i class="fa fa-circle-o"></i> Malla curricular</a></li>
-                <li><a href="{{ url('configuracion/anos-lectivos') }}"><i class="fa fa-circle-o"></i> Años lectivos</a></li>
+                <li><a href="{{ url('configuracion/semestres') }}"><i class="fa fa-circle-o"></i> Semestres</a></li>
               </ul>
             </li>
             <li><a href="#"><i class="fa fa-book"></i> <span>Reportes</span></a></li>
