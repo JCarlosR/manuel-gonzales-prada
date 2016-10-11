@@ -215,6 +215,7 @@
                   <li><a href="#"><i class="fa fa-circle-o"></i> Perfil de usuario</a></li>
               </ul>
             </li>
+          @if (Auth::user()->is_admin)
             <li class="treeview">
               <a href="#">
                   <i class="fa fa-edit"></i> <span>Matrícula</span>
@@ -249,12 +250,6 @@
                 <li><a href="#"><i class="fa fa-circle-o"></i> Reporte B</a></li>
               </ul>
             </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-envelope"></i> <span>Notificaciones</span>
-                <small class="label pull-right bg-yellow">2</small>
-              </a>
-            </li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-folder"></i> <span>Configuración</span>
@@ -269,7 +264,19 @@
                 <li><a href="{{ url('configuracion/semestres') }}"><i class="fa fa-circle-o"></i> Semestres</a></li>
               </ul>
             </li>
-            <li><a href="#"><i class="fa fa-book"></i> <span>Reportes</span></a></li>
+          @else
+              <li>
+                  <a href="#">
+                      <i class="fa fa-book"></i> <span>Notas</span>
+                  </a>
+              </li>
+          @endif
+            <li>
+              <a href="#">
+                <i class="fa fa-envelope"></i> <span>Notificaciones</span>
+                <small class="label pull-right bg-yellow">2</small>
+              </a>
+            </li>
             <li class="header">LABELS</li>
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
@@ -487,10 +494,24 @@
     <script src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
     <!-- FastClick -->
     <script src="{{ asset('plugins/fastclick/fastclick.min.js') }}"></script>
+
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/app.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js') }}"></script>
+
+    @if (Auth::user()->role_id == 2) {{-- For students show an online help --}}
+    <!--Start Live Chat Script-->
+    <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+                d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+            $.src="//v2.zopim.com/?4HYSgHXVlbX4PyteimKXvzw2WZgp8hT3";z.t=+new Date;$.
+                    type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    </script>
+    <!--End Live Chat Script-->
+    @endif
+
     @yield('scripts')
   </body>
 </html>
