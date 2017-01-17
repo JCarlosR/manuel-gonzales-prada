@@ -188,7 +188,7 @@
               <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{{ Auth::user()->last_name }}</p>
+              <p>{{ auth()->user()->last_name }}</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -215,7 +215,7 @@
                   <li><a href="#"><i class="fa fa-circle-o"></i> Perfil de usuario</a></li>
               </ul>
             </li>
-          @if (Auth::user()->is_admin)
+          @if (auth()->user()->is_admin)
             <li class="treeview">
               <a href="#">
                   <i class="fa fa-edit"></i> <span>Matrícula</span>
@@ -500,7 +500,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js') }}"></script>
 
-    @if (Auth::user()->role_id == 2) {{-- For students show an online help --}}
+    @if (auth()->user()->role_id == 2) {{-- For students show an online help --}}
     <!--Start Live Chat Script-->
     <script type="text/javascript">
         window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=

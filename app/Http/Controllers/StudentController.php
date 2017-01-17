@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
@@ -26,6 +27,8 @@ class StudentController extends Controller
 
     public function create()
     {
+        $id = auth()->user()->id;
+        Log::info("El usuario $id ha ingresado a la página de registro de un alumno.");
         return view('alumnos.create');
     }
 
@@ -103,7 +106,9 @@ class StudentController extends Controller
             $user->save();
         }
 
-        return back()->with('success', 'El alumno se ha registrado exitosamente.');
+        $id = auth()->user()->id;
+        Log::info("El usuario $id ha finalizado el registro satisfactorio del alumno $user->id.");
+        return redirect('/alumnos')->with('success', 'El alumno se ha registrado exitosamente.');
     }
 
     public function edit($id)
