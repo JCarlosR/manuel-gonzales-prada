@@ -19,10 +19,16 @@ class StudentController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $students = User::where('role_id', 2)->get();
-        return view('alumnos.index')->with(compact('students'));
+        $dni = $request->input('dni');
+        if ($dni)
+            $students = User::where('role_id', 2)
+                            ->where('identity_card', 'LIKE', '%'.$dni.'%')->get();
+        else
+            $students = User::where('role_id', 2)->get();
+
+        return view('alumnos.index')->with(compact('students', 'dni'));
     }
 
     public function create()

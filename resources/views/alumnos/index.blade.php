@@ -19,14 +19,28 @@
         </div>
     </div>
     <div class="box-body">
+
         @if (session('success'))
             <div class="alert alert-success">
                 <p>{{ session('success') }}</p>
             </div>
         @endif
-        <a href="{{ url('/alumnos/registrar') }}" class="btn btn-success pull-right">Registrar nuevo alumno</a>
-        <br />
+
+        <div class="form-group">
+            <a href="{{ url('/alumnos/registrar') }}" class="btn btn-success pull-right">Registrar nuevo alumno</a>
+        </div>
+
         <p>A continuación usted puede editar y dar de baja a los alumnos del instituto.</p>
+
+        <form action="" class="form-inline">
+            <div class="form-group">
+                <label for="dni">Buscar por DNI:</label>
+                <input type="text" class="form-control" name="dni" id="dni" value="{{ $dni }}">
+            </div>
+            <button class="btn btn-primary">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </form>
         <table class="table">
             <thead>
             <tr>
