@@ -123,5 +123,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('/custom/alumnos/create.js') }}"></script>
+    <script src="{{ asset('/custom/timer/create.js') }}"></script>
 @endsection

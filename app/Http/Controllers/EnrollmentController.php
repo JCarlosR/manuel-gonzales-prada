@@ -7,6 +7,7 @@ use App\Enrollment;
 use App\SchoolYear;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class EnrollmentController extends Controller
@@ -99,7 +100,13 @@ class EnrollmentController extends Controller
                 ->withErrors(['duplicated' => 'El alumno ya se encuentra matriculado en este año lectivo.'])
                 ->withInput();
 
-        Enrollment::create($request->all());
+        $enrollment = Enrollment::create($request->all());
+
+        // Timer log
+        $message  = 'El usuario ' . auth()->user()->full_name;
+        $message .= ' ha registrado la matrícula del alumno ' . $enrollment->user->full_name;
+        $message .= ' satisfactoriamente en ' . $request->input('input_timer') . ' !';
+        Log::info($message);
 
         return back()->with('success', 'La matrícula se ha registrado exitosamente.');
     }

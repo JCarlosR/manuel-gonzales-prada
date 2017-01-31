@@ -59,79 +59,85 @@
             </div>
         @endif
 
+        <div class="alert alert-info" id="alert-timer">
+            {{ old('input_timer', '00:00:00.000') }}
+        </div>
+
         <form action="{{ url('matricula/registrar') }}" method="POST" id="newEnrollment">
             {{ csrf_field() }}
 
-                <div class="col-sm-6">
+            <input type="hidden" name="input_timer" id="input-timer" value="{{ old('input_timer', '00:00:00.000') }}">
 
-                    <div class="form-group">
-                        <label for="name">Seleccione alumno</label>
-                        <div class="row">
-                            <div class="col-xs-9">
-                                <input type="hidden" name="user_id" value="{{ old('user_id') }}" required>
-                                <input type="text" name="name" placeholder="Nombre del alumno" class="form-control" value="{{ old('name') }}" readonly>
-                            </div>
-                            <div class="col-xs-3">
-                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalStudents">
-                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                    Buscar
-                                </button>
-                            </div>
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label for="name">Seleccione alumno</label>
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <input type="hidden" name="user_id" value="{{ old('user_id') }}" required>
+                            <input type="text" name="name" placeholder="Nombre del alumno" class="form-control" value="{{ old('name') }}" readonly>
                         </div>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="catchword">Semestre actual</label>
-                        <select name="school_year_id" class="form-control">
-                            <option value="{{ $school_year->id }}">{{ $school_year->name }}</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="career_id">Seleccione carrera</label>
-                        <select name="career_id" id="career_id" class="form-control">
-                            @foreach ($careers as $career)
-                            <option value="{{ $career->id }}">{{ $career->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="academic_year">Seleccione ciclo</label>
-                        <select name="academic_year" id="academic_year" class="form-control" data-source="{{ url('grado/{id}/secciones') }}">
-                            <option value="1">Ciclo I</option>
-                            <option value="2">Ciclo II</option>
-                            <option value="3">Ciclo III</option>
-                            <option value="4">Ciclo IV</option>
-                            <option value="5">Ciclo V</option>
-                            <option value="6">Ciclo VI</option>
-                        </select>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalStudents">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                Buscar
+                            </button>
+                        </div>
                     </div>
 
                 </div>
-                <div class="col-sm-6">
 
-                    <div class="form-group">
-                        <label for="amount">Pago por matrícula</label>
-                        <input type="text" name="amount" placeholder="Monto a pagar ahora" class="form-control" value="{{ old('amount') }}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="status">Estado actual</label>
-                        <select name="status" class="form-control">
-                            <option value="0">Pendiente de pago</option>
-                            <option value="1">Pago completo</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="observations">Observaciones</label>
-                        <textarea name="observations" class="form-control">{{ old('observations') }}</textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-success pull-right">Registrar matrícula</button>
+                <div class="form-group">
+                    <label for="catchword">Semestre actual</label>
+                    <select name="school_year_id" class="form-control">
+                        <option value="{{ $school_year->id }}">{{ $school_year->name }}</option>
+                    </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="career_id">Seleccione carrera</label>
+                    <select name="career_id" id="career_id" class="form-control">
+                        @foreach ($careers as $career)
+                        <option value="{{ $career->id }}">{{ $career->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="academic_year">Seleccione ciclo</label>
+                    <select name="academic_year" id="academic_year" class="form-control" data-source="{{ url('grado/{id}/secciones') }}">
+                        <option value="1">Ciclo I</option>
+                        <option value="2">Ciclo II</option>
+                        <option value="3">Ciclo III</option>
+                        <option value="4">Ciclo IV</option>
+                        <option value="5">Ciclo V</option>
+                        <option value="6">Ciclo VI</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <label for="amount">Pago por matrícula</label>
+                    <input type="text" name="amount" placeholder="Monto a pagar ahora" class="form-control" value="{{ old('amount') }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Estado actual</label>
+                    <select name="status" class="form-control">
+                        <option value="0">Pendiente de pago</option>
+                        <option value="1">Pago completo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="observations">Observaciones</label>
+                    <textarea name="observations" class="form-control">{{ old('observations') }}</textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success pull-right">Registrar matrícula</button>
+            </div>
 
         </form>
     </div><!-- /.box-body -->
@@ -142,4 +148,5 @@
     <script src="{{ asset('dist/js/footable.min.js') }}"></script>
     <script>$(function(){ $('.table').footable(); })</script>
     <script src="{{ asset('custom/js/matricular.js') }}"></script>
+    <script src="{{ asset('/custom/timer/create.js') }}"></script>
 @endsection
