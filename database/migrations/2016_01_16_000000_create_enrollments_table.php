@@ -19,15 +19,20 @@ class CreateEnrollmentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 
-            // SchoolYear target
+            // Season
             $table->integer('school_year_id')->unsigned();
             $table->foreign('school_year_id')->references('id')->on('school_years');
 
-            // Grade and section
+            // Career
+            $table->integer('career_id')->unsigned();
+            $table->foreign('career_id')->references('id')->on('careers');
+
+            // Grade: I, II, III, IV, V, VI
+            $table->integer('academic_year');
 
             // Status
-            // 0: Pendiente de pago
-            // 1: Pago completo
+            // 0: Pending payment
+            // 1: Complete payment
             $table->boolean('status');
 
             // The payment value

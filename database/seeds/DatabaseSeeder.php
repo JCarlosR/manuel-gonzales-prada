@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         // Study seasons
         $this->call(SchoolYearsTableSeeder::class);
+
         // $this->call(PeriodsTableSeeder::class);
         // $this->call(UnitsTableSeeder::class);
     }

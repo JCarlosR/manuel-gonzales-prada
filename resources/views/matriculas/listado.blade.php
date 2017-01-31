@@ -90,26 +90,29 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="grade_id">Carreras:</label>
-                            <select name="grade_id" class="form-control">
+                            <label for="career_id">Carreras:</label>
+                            <select name="career_id" class="form-control" id="career_id">
                                 @foreach ($careers as $career)
-                                <option value="{{ $career->id }}">{{ $career->name }}</option>
+                                <option value="{{ $career->id }}" @if($career->id==$career_id) selected @endif>{{ $career->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="section_id">Sección:</label>
-                            <select name="section_id" class="form-control">
-                                <option value="">Sección A</option>
-                                <option value="">Sección B</option>
-                                <option value="">Sección C</option>
+                            <label for="academic_year">Ciclo:</label>
+                            <select name="academic_year" id="academic_year" class="form-control">
+                                <option value="1" @if($academic_year == 1) selected @endif>Ciclo I</option>
+                                <option value="2" @if($academic_year == 2) selected @endif>Ciclo II</option>
+                                <option value="3" @if($academic_year == 3) selected @endif>Ciclo III</option>
+                                <option value="4" @if($academic_year == 4) selected @endif>Ciclo IV</option>
+                                <option value="5" @if($academic_year == 5) selected @endif>Ciclo V</option>
+                                <option value="6" @if($academic_year == 6) selected @endif>Ciclo VI</option>
                             </select>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="status">Estado de pago:</label>
-                            <select name="status" class="form-control">
-                                <option value="0">Pendiente de pago</option>
-                                <option value="1">Pago completo</option>
+                            <select id="status" name="status" class="form-control">
+                                <option value="0" @if($status == 0) selected @endif>Pendiente de pago</option>
+                                <option value="1" @if($status == 1) selected @endif>Pago completo</option>
                             </select>
                         </div>
                     </div>
@@ -124,15 +127,18 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach ($enrollments as $enrollment)
                         <tr>
-                            <td>Diego Payano Herrera</td>
-                            <td>05/10/2016</td>
-                            <td>S/. 250</td>
+                            <td>{{ $enrollment->user->full_name }}</td>
+                            <td>{{ $enrollment->created_at }}</td>
+                            <td>S/. {{ $enrollment->amount }}</td>
                             <td>
-                                <button class="btn btn-primary" data-editar="">Ver cuotas</button>
-                                <a href="#" class="btn btn-success">Añadir cuota</a>
+                                <a href="{{ url('/alumnos/editar/'.$enrollment->user->id) }}" class="btn btn-primary">
+                                    Editar alumno
+                                </a>
                             </td>
                         </tr>
+                        @endforeach
                         </tbody>
                     </table>
 
@@ -143,5 +149,5 @@
 @endsection
 
 @section('scripts')
-
+    <script src="{{ asset('custom/js/matriculas.js') }}"></script>
 @endsection

@@ -26,7 +26,7 @@
                 @include('tablas.students')
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
 
@@ -98,12 +98,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="section_id">Seleccione sección</label>
-                        <select name="section_id" id="section_id" class="form-control" data-source="{{ url('grado/{id}/secciones') }}">
-                            <!-- The options will be re-loaded when the grade change -->
-                            <option value="">Sección A</option>
-                            <option value="">Sección B</option>
-                            <option value="">Sección C</option>
+                        <label for="academic_year">Seleccione ciclo</label>
+                        <select name="academic_year" id="academic_year" class="form-control" data-source="{{ url('grado/{id}/secciones') }}">
+                            <option value="1">Ciclo I</option>
+                            <option value="2">Ciclo II</option>
+                            <option value="3">Ciclo III</option>
+                            <option value="4">Ciclo IV</option>
+                            <option value="5">Ciclo V</option>
+                            <option value="6">Ciclo VI</option>
                         </select>
                     </div>
 
@@ -130,7 +132,6 @@
 
                     <button type="submit" class="btn btn-success pull-right">Registrar matrícula</button>
                 </div>
-            </div>
 
         </form>
     </div><!-- /.box-body -->
