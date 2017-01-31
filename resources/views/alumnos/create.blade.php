@@ -35,8 +35,13 @@
             </div>
         @endif
 
+        <div class="alert alert-info" id="alert-timer">
+            {{ old('input_timer', '00:00:00.000') }}
+        </div>
+
         <form action="{{ url('alumnos/registrar') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
+            <input type="hidden" name="input_timer" id="input-timer" value="{{ old('input_timer', '00:00:00.000') }}">
 
             <div class="row">
                 <div class="col-sm-6">
@@ -115,4 +120,8 @@
         </form>
     </div><!-- /.box-body -->
 </div><!-- /.box -->
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('/custom/alumnos/create.js') }}"></script>
 @endsection

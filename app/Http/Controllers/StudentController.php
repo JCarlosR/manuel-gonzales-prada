@@ -28,7 +28,6 @@ class StudentController extends Controller
     public function create()
     {
         $id = auth()->user()->id;
-        Log::info("El usuario $id ha ingresado a la página de registro de un alumno.");
         return view('alumnos.create');
     }
 
@@ -106,8 +105,12 @@ class StudentController extends Controller
             $user->save();
         }
 
-        $id = auth()->user()->id;
-        Log::info("El usuario $id ha finalizado el registro satisfactorio del alumno $user->id.");
+        // Timer log
+        $message  = 'El usuario ' . auth()->user()->full_name;
+        $message .= ' ha finalizado el registro del alumno ' . $user->full_name;
+        $message .= ' satisfactoriamente en ' . $request->input('input_timer') . ' !';
+        Log::info($message);
+
         return redirect('/alumnos')->with('success', 'El alumno se ha registrado exitosamente.');
     }
 
