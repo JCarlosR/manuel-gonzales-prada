@@ -72,3 +72,6 @@ Route::get('administrativos/eliminar/{id}', 'WorkerController@destroy');
 Route::get('matricula/listar', 'EnrollmentController@index');
 Route::get('matricula/registrar', 'EnrollmentController@create');
 Route::post('matricula/registrar', 'EnrollmentController@store');
+
+// Reports
+Route::get('reporte/matriculas/carrera', 'ReportController@careerCount');

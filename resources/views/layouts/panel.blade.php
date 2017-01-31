@@ -246,8 +246,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Reporte A</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Reporte B</a></li>
+                <li><a href="{{ url('/reporte/matriculas/carrera') }}"><i class="fa fa-circle-o"></i> Reporte matrículas</a></li>
               </ul>
             </li>
             <li class="treeview">
